@@ -11,6 +11,7 @@ const messagePar = document.querySelector(".message");
 //? Score
 const scoreCardSection = document.querySelector(".score-card");
 const pcScoreSpan = document.getElementById("pc-score");
+const yourScoreSpan = document.getElementById("your-score");
 
 //* ------ Variables ------ */
 let userSelectImg = document.createElement("img");
@@ -76,7 +77,12 @@ const youLost = () => {
   pcScoreSpan.textContent++;
 };
 
-const youWin = () => {};
+const youWin = () => {
+  messagePar.textContent = "You Win";
+  scoreCardSection.style.color = GREEN;
+  messagePar.style.backgroundColor = GREEN;
+  yourScoreSpan.textContent++;
+};
 
 //! ilkel yontem
 //? Resimler
