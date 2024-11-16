@@ -10,10 +10,12 @@ const messagePar = document.querySelector(".message");
 
 //? Score
 const scoreCardSection = document.querySelector(".score-card");
+const pcScoreSpan = document.getElementById("pc-score");
 
 //* ------ Variables ------ */
 let userSelectImg = document.createElement("img");
 let pcSelectImg = document.createElement("img");
+let pcRandom;
 
 //? Colors
 const YELLOW = "#ffc538";
@@ -36,7 +38,7 @@ selectionArticle.addEventListener("click", (e) => {
 
 const createPcSelection = () => {
   const pcArr = ["rock", "paper", "scissor"];
-  const pcRandom = pcArr[Math.floor(Math.random() * 3)];
+  pcRandom = pcArr[Math.floor(Math.random() * 3)];
   pcSelectImg.src = `./assets/${pcRandom}.png`;
   pcSelectImg.alt = pcRandom;
   pcChoiceDiv.appendChild(pcSelectImg);
@@ -48,8 +50,16 @@ const calculateResult = () => {
   // console.log(pcSelectImg.alt);
 
   //? Esitlik durumu
-  if (userSelectImg.alt === pcSelectImg.alt) {
+  if (userSelectImg.alt === pcRandom) {
     draw();
+  } else {
+    if (userSelectImg.alt === "rock") {
+      pcRandom === "paper" ? youLost() : youWin();
+    } else if (userSelectImg.alt === "scissor") {
+      pcRandom === "rock" ? youLost() : youWin();
+    } else if (userSelectImg.alt === "paper") {
+      pcRandom === "scissor" ? youLost() : youWin();
+    }
   }
 };
 
@@ -58,6 +68,15 @@ const draw = () => {
   scoreCardSection.style.color = YELLOW;
   messagePar.style.backgroundColor = YELLOW;
 };
+
+const youLost = () => {
+  messagePar.textContent = "You Lost";
+  scoreCardSection.style.color = RED;
+  messagePar.style.backgroundColor = RED;
+  pcScoreSpan.textContent++;
+};
+
+const youWin = () => {};
 
 //! ilkel yontem
 //? Resimler
