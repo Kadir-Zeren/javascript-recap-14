@@ -15,6 +15,8 @@ const yourScoreSpan = document.getElementById("your-score");
 
 //? Modal
 const modalCardSection = document.querySelector(".modal-card");
+const finalMessagePar = document.getElementById("final-message");
+const playAgainBtn = document.getElementById("play-again");
 
 //* ------ Variables ------ */
 let userSelectImg = document.createElement("img");
@@ -93,6 +95,12 @@ const youWin = () => {
 
 const openModal = () => {
   modalCardSection.classList.add("show");
+
+  if (yourScoreSpan.textContent === "10") {
+    finalMessagePar.textContent = "💃You Win🕺";
+    document.querySelector(".modal").style.backgroundColor = GREEN;
+    playAgainBtn.style.color = GREEN;
+  }
 };
 
 //! ilkel yontem
